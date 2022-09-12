@@ -19,81 +19,114 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    position: relative;
-    width: 100%;
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+.align-items-center{
+	align-items: center;
+}
+.justify-content-between{
+	justify-content: space-between;
+}
+/*header*/
+.header{
+	background-color: var(--white1);
+	padding: 12px 0;
+	line-height: 1.5;
 }
 
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
-    height: 100%;
-    border-right: 1px solid rgba(0, 0, 0, var(--black1));
-    background: var(--white1);
-    display: flex;
-    
-    align-items: center;
-    overflow: hidden;
-    transition: width 0.5s;
-    
+.header .logo,
+.header .nav{
+	padding:0 15px;
 }
-
-
-
-.main {
-    position: absolute;
-    width: calc(100% - 300px);
-    left: 300px;
+.header .logo a{
+	font-size: 30px;
+	color: var(--black1);
+	text-transform: capitalize;
+}
+.header .nav ul li{
+	display: inline-block;
+	margin-left: 40px;
+}
+.header .nav ul li a{
+	display: block;
+	font-size: 16px;
+	text-transform: capitalize;
+	color: var(--black1);
+	padding: 10px 0;
+	transition: all 0.5s ease;
+}
+.header .nav ul li a.active,
+.header .nav ul li a:hover{
+	color: var(--gold1);
+}
+.nav-toggler{
+	height: 34px;
+	width: 44px;
+	background-color: var(--black1);
+	border-radius: 4px;
+	cursor: pointer;
+	border:none;
+	display: none;
+	margin-right: 15px;
+}
+.nav-toggler:focus{
+	outline: none;
+	box-shadow:var(--black2);
+}
+.nav-toggler span{
+    height: 2px;
+    width: 20px;
     background-color: var(--white1);
-    min-height: 100vh;
-    transition: width 0.5s left 0.5s;
-}
-.main.active{
-    width: calc(100% - 0px);
-    left: 0px;  
-}
-
-.main .topbar {
-    position: fixed;
-    top: 0;
-    width: calc(100% - 300px);
-    left: 300px;
-    background-color: var(--white2);
-    border-bottom: 1px solid rgba(0, 0, 0, var(--black1));
-    height: 60px;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10000;
-    transition: width 0.5s left 0.5s;
-}
-.main .topbar.active{
-    width: calc(100% - 0px);
-    left: 0px;  
-}
-
-.main .topbar .logo {
-    color: var(--black);
-    font-weight: 700;
-    text-decoration: none;
-    font: size 1.4em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.main .topbar .toggle {
+    display: block;
+    margin:auto;
     position: relative;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: (var(--black1));
+    transition: all 0.3s ease;
 }
+.nav-toggler.active span{
+	background-color: transparent;
+}
+.nav-toggler span::before,
+.nav-toggler span::after{
+	content: '';
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--white1);
+	transition: all 0.3s ease;
+}
+.nav-toggler span::before{
+	transform: translateY(-6px);
+}
+.nav-toggler.active span::before{
+	transform: rotate(45deg);
+}
+.nav-toggler span::after{
+	transform: translateY(6px);
+}
+.nav-toggler.active span::after{
+	transform: rotate(135deg);
+}
+
+
+
+h3{
+    padding: 0 25px 0 0;
+}
+
 section{
    position: relative;
    min-height: 100vh; 
@@ -215,7 +248,7 @@ p{
 }
 #button{
     margin-top: 20px;
-    left: 35%
+    left: 85%
 }
 .about .content .imageBox{
     margin-left: 40px;
@@ -295,14 +328,32 @@ p{
 	line-height: 22px;
 }
 
-@media (max-width: 1000px){
-    
-    .skillcontainer{
-    grid-template-columns: repeat(2, 1fr);
-    padding: 2rem 50px;
- }
-}
- @media screen and (max-width: 600px){
+
+ @media (max-width: 683px){
+    .nav-toggler{
+        display: block;
+    }
+    .header .nav{
+        width: 100%;
+        padding:0;
+        max-height: 0px;
+        overflow: hidden;
+        visibility: hidden;
+        transition: all 0.5s ease;
+    }
+    .header .nav.open{
+        visibility: visible;
+    }
+    .header .nav ul{
+        padding:12px 15px 0;
+        margin-top: 12px;
+        border-top:1px solid --black1;
+    }
+    .header .nav ul li{
+        display: block;
+        margin:0;
+    }
+
     .skillcontainer{
     grid-template-columns: 1fr;
  }
@@ -320,4 +371,5 @@ p{
 .timeline-dot{
     left:0;
 }
- }
+
+}
